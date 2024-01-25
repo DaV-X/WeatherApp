@@ -1,14 +1,14 @@
-package com.example.weatherapp.ui.home;
+package com.example.weatherapp.ui.currentweather;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class CurrentWeatherViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public CurrentWeatherViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
