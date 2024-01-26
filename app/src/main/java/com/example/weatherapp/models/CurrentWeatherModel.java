@@ -61,6 +61,7 @@ public class CurrentWeatherModel {
     }
     public class Rain {
         public double _1h;
+
     }
     public class Clouds {
         public int all;
