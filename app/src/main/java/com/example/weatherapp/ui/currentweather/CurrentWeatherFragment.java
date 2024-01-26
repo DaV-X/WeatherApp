@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.weatherapp.databinding.FragmentCurrentweatherBinding;
+import com.example.weatherapp.models.CurrentWeatherModel;
+import com.example.weatherapp.services.WeatherApiService;
 
 public class CurrentWeatherFragment extends Fragment {
 
@@ -26,6 +28,12 @@ public class CurrentWeatherFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        WeatherApiService weatherApiService = new WeatherApiService();
+        // Pobierz dane na podstawie współrzędnych geograficznych
+        CurrentWeatherModel Temp = weatherApiService.getWeatherByCoordinates(53.10, 23.10,"metric");
+        System.out.println(Temp);
+
         return root;
     }
 
