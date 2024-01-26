@@ -29,11 +29,6 @@ public class CurrentWeatherFragment extends Fragment {
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
-        WeatherApiService weatherApiService = new WeatherApiService();
-        // Pobierz dane na podstawie współrzędnych geograficznych
-        CurrentWeatherModel Temp = weatherApiService.getWeatherByCoordinates(53.10, 23.10,"metric");
-        System.out.println(Temp);
-
         return root;
     }
 
