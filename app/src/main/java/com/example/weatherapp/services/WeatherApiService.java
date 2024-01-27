@@ -1,6 +1,6 @@
 package com.example.weatherapp.services;
 
-import com.example.weatherapp.models.CurrentWeatherModel;
+import com.example.weatherapp.models.CurrentWeather;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import retrofit2.Call;
@@ -23,10 +23,10 @@ public class WeatherApiService {
         weatherApiInterface = retrofit.create(WeatherApiInterface.class);
     }
 
-    public CurrentWeatherModel getWeatherByCityName(String cityName, String units) {
-        final CurrentWeatherModel[] currentWeatherData = new CurrentWeatherModel[1];
+    public CurrentWeather getWeatherByCityName(String cityName, String units) {
+        final CurrentWeather[] currentWeatherData = new CurrentWeather[1];
 
-        CompletableFuture<CurrentWeatherModel> futureWeather = CompletableFuture.supplyAsync(() -> {
+        CompletableFuture<CurrentWeather> futureWeather = CompletableFuture.supplyAsync(() -> {
             try {
                 return weatherApiInterface.getWeatherByCity(cityName, API_KEY, units).execute().body();
             } catch (IOException e) {
@@ -46,14 +46,14 @@ public class WeatherApiService {
 
     public interface WeatherApiInterface {
         @GET("weather")
-        Call<CurrentWeatherModel> getWeatherByCity(
+        Call<CurrentWeather> getWeatherByCity(
                 @Query("q") String cityName,
                 @Query("appid") String apiKey,
                 @Query("units") String units
         );
 
         @GET("weather")
-        Call<CurrentWeatherModel> getWeatherByCoordinates(
+        Call<CurrentWeather> getWeatherByCoordinates(
                 @Query("lat") double latitude,
                 @Query("lon") double longitude,
                 @Query("appid") String apiKey,
