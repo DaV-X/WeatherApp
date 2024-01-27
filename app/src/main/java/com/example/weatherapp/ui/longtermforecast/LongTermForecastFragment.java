@@ -18,14 +18,27 @@ public class LongTermForecastFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LongTermForecastViewModel galleryViewModel =
-                new ViewModelProvider(this).get(LongTermForecastViewModel.class);
-
+        LongTermForecastViewModel viewModel = new ViewModelProvider(this).get(LongTermForecastViewModel.class);
         binding = FragmentLongtermforecastBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        viewModel.updateForecastData("Bialystok");
+
+
+        viewModel.getForecastData().observe(getViewLifecycleOwner(), forecastData -> {
+            if (forecastData != null) {
+                StringBuilder dane = new StringBuilder();
+                //forecastData.cnt jest iloscią pomiarów które są co 3 godziny a jest ich zazwyczaj 40(5dni *24h/3 = 40)
+                for (int i = 0; i < forecastData.cnt; i++) {
+                    dane.append(forecastData.list.get(i).dt_txt + "\n");
+                    dane.append(forecastData.list.get(i).main.temp + " " + forecastData.list.get(i).wind.speed + "\n");
+                }
+                textView.setText(dane.toString());
+            }
+        });
+
         return root;
     }
 
