@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_currentweather"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_calendar_today"
             android:title="@string/menu_currentweather" />
         <item
             android:id="@+id/nav_longtermforecast"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_calendar_month"
             android:title="@string/menu_longtermforecast" />
         <item
             android:id="@+id/nav_slideshow"
