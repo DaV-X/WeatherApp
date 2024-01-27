@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_currentweather" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.weatherapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_longtermforecast"
+        android:name="com.example.weatherapp.ui.longtermforecast.LongTermForecastFragment"
+        android:label="@string/menu_longtermforecast"
+        tools:layout="@layout/fragment_longtermforecast" />
 
     <fragment
         android:id="@+id/nav_slideshow"

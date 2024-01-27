@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.gallery;
+package com.example.weatherapp.ui.longtermforecast;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.weatherapp.databinding.FragmentGalleryBinding;
+import com.example.weatherapp.databinding.FragmentLongtermforecastBinding;
 
-public class GalleryFragment extends Fragment {
+public class LongTermForecastFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentLongtermforecastBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        LongTermForecastViewModel galleryViewModel =
+                new ViewModelProvider(this).get(LongTermForecastViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentLongtermforecastBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
