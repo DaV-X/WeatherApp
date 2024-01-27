@@ -4,7 +4,6 @@ import com.example.weatherapp.models.CurrentWeather;
 import com.example.weatherapp.models.LongTermForecast;
 
 import java.io.IOException;
-import java.nio.DoubleBuffer;
 import java.util.concurrent.CompletableFuture;
 import retrofit2.Call;
 import retrofit2.Retrofit;
