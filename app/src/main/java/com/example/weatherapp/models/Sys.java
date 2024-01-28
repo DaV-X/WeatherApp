@@ -1,11 +1,12 @@
 package com.example.weatherapp.models;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import lombok.ToString;
 
 @ToString
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = SavedWeather.class, parentColumns = "id", childColumns = "savedWeatherId", onDelete = ForeignKey.CASCADE))
 public class Sys {
     private int type;
     @PrimaryKey

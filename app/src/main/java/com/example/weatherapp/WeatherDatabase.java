@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 import com.example.weatherapp.daos.*;
 import com.example.weatherapp.models.*;
 
-@Database(entities = {Clouds.class, Coord.class, Main.class, Rain.class, SavedWeather.class, Sys.class, Weather.class, Wind.class}, version = 1)
+@Database(entities = {Clouds.class, Coord.class, Main.class, Rain.class, SavedWeather.class, Sys.class, Weather.class, Wind.class}, version = 2)
 public abstract class WeatherDatabase extends RoomDatabase {
     public abstract CloudsDao getCloudsDao();
 

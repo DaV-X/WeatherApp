@@ -3,18 +3,13 @@ package com.example.weatherapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.weatherapp.databinding.ActivityMainBinding;
-import com.example.weatherapp.models.Coord;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,28 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private WeatherDatabase weatherDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        weatherDatabase = Room.databaseBuilder(getApplicationContext(), WeatherDatabase.class, "weather_database").fallbackToDestructiveMigration().addCallback(new RoomDatabase.Callback() {
-                    @Override
-                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                        super.onCreate(db);
-                        // Handle onCreate
-                    }
+        DatabaseInsatnce.Initialize(getApplicationContext());
 
-                    @Override
-                    public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                        super.onOpen(db);
-                        // Handle onOpen
-                    }
-                }).allowMainThreadQueries() // For demonstration purposes only; use AsyncTask or background thread for database operations
-                .build();
-        Coord coord = weatherDatabase.getCoordDao().getCoordById(1);
-        weatherDatabase.getCoordDao().deleteCoord(coord);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

@@ -12,12 +12,6 @@ import lombok.NoArgsConstructor;
 public class SavedWeather {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    //    private int mainId;
-//    private int rainId;
-//    private int cloudsId;
-//    private int windId;
-//    private int coordId;
-//    private int sysId;
     private int visibility;
     private int timezone;
     private int cod;

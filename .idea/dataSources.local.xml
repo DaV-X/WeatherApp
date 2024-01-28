@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-233.14015.106">
-    <data-source name="weather_database" uuid="a317ea12-7d2a-4b88-9acf-c01f6407471a">
+    <data-source name="weather_database" uuid="e0d4e3ae-cd07-403f-987b-12273bd97ed2">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" />
       <auth-provider>no-auth</auth-provider>
       <schema-mapping />
