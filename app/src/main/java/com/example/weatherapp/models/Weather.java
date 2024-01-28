@@ -1,13 +1,26 @@
 package com.example.weatherapp.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import lombok.ToString;
 
 @ToString
+@Entity
 public class Weather {
+    @PrimaryKey
     private int id;
     private String main;
     private String description;
     private String icon;
+    private int savedWeatherId;
+
+    public int getSavedWeatherId() {
+        return savedWeatherId;
+    }
+
+    public void setSavedWeatherId(int savedWeatherId) {
+        this.savedWeatherId = savedWeatherId;
+    }
 
     public int getId() {
         return id;

@@ -1,11 +1,9 @@
 package com.example.weatherapp.ui.currentweather;
 
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.weatherapp.models.CurrentWeather;
 import com.example.weatherapp.services.WeatherApiService;
 
