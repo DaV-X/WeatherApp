@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.databinding.FragmentLongtermforecastBinding;
-import com.example.weatherapp.models.WeatherEntry;
+import com.example.weatherapp.models.SettingsData;
 import com.example.weatherapp.ui.adapters.WeatherAdapter;
 
 import java.text.SimpleDateFormat;
@@ -31,7 +31,7 @@ public class LongTermForecastFragment extends Fragment {
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        viewModel.updateForecastData("Bialystok");
+        viewModel.updateForecastData(SettingsData.getInstance().cityName);
 
         viewModel.getForecastData().observe(getViewLifecycleOwner(), forecastData -> {
             if (forecastData != null) {

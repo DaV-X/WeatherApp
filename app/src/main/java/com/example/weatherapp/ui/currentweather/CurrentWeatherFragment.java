@@ -9,6 +9,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.weatherapp.databinding.FragmentCurrentweatherBinding;
+import com.example.weatherapp.models.SettingsData;
+import com.example.weatherapp.ui.settings.SettingsViewModel;
+
 import androidx.lifecycle.ViewModelProvider;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +30,11 @@ public class CurrentWeatherFragment extends Fragment {
         editTextCityName = binding.editTextCityName;
         buttonSearch = binding.buttonSearch;
 
+        //load saved settings
+        SettingsData settings = SettingsData.getInstance();
+        if(!settings.useCurrentLocation)
+            editTextCityName.setText(settings.cityName);
+
         buttonSearch.setOnClickListener(v -> {
             String cityName = editTextCityName.getText().toString();
             if (!cityName.isEmpty()) {
@@ -37,10 +45,23 @@ public class CurrentWeatherFragment extends Fragment {
         viewModel.getWeatherData().observe(getViewLifecycleOwner(), weatherData -> {
             if (weatherData != null) {
                 binding.textViewCityName.setText(weatherData.name);
-                binding.textViewMinMax.setText("Min: " + weatherData.main.temp_min + "°C" + "  " + "Max: " + weatherData.main.temp_max + "°C");
-                binding.textViewTemperature.setText(weatherData.main.temp + "°C");
+                if(settings.temperatureUnit.equals("Celsius")){
+                    binding.textViewMinMax.setText("Min: " + weatherData.main.temp_min + "°C" + "  " + "Max: " + weatherData.main.temp_max + "°C");
+                    binding.textViewTemperature.setText(weatherData.main.temp + "°C");
+                }else{
+                    binding.textViewMinMax.setText("Min: " + settings.celsiusToFahrenheit(weatherData.main.temp_min) + "°F" + "  " + "Max: " + settings.celsiusToFahrenheit(weatherData.main.temp_max) + "°F");
+                    binding.textViewTemperature.setText(settings.celsiusToFahrenheit(weatherData.main.temp) + "°F");
+                }
+
                 binding.textViewHumidity.setText(weatherData.main.humidity + "%");
-                binding.textViewWind.setText(weatherData.wind.speed + " m/s");
+
+                if(settings.windSpeedUnit.equals("m/s")){
+                    binding.textViewWind.setText(weatherData.wind.speed + " m/s");
+                }else{
+                    binding.textViewWind.setText(settings.msToKmh(weatherData.wind.speed) + " km/h");
+                }
+
+
                 if (weatherData.rain != null && weatherData.rain._1h > 0) {
                     binding.textViewRain.setText(weatherData.rain._1h + " mm");
                 } else {
@@ -54,6 +75,12 @@ public class CurrentWeatherFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        editTextCityName.setText(SettingsData.getInstance().cityName);
     }
 
     @Override

@@ -10,4 +10,18 @@
     <string name="menu_currentweather">Current Weather</string>
     <string name="menu_longtermforecast">Long Term Forecast</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="settings_name">Settings</string>
+
+    <string name="settings_location">Location</string>
+    <string name="settings_current_location">Current location</string>
+    <string name="settings_city">City</string>
+    <string name="settings_city_name">Bialystok</string>
+    <string name="settings_temperature_unit">Temperature unit</string>
+    <string name="settings_celsius">Celsius°C</string>
+    <string name="settings_fahrenheit">Fahrenheit °F</string>
+    <string name="settings_wind_speed_unit">Wind speed unit</string>
+    <string name="settings_km_h">Km/h</string>
+    <string name="settings_m_s">M/s</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_auto_updates">Auto updates</string>
 </resources>

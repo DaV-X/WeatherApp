@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Localization -->
+    <TextView
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="@string/settings_location"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_localization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/radioButton_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_current_location"/>
+
+        <RadioButton
+            android:id="@+id/radioButton_enterCity"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_city" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editText_cityName"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/settings_city_name"
+        android:enabled="false"
+        android:hint="@string/settings_city_name"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="@string/settings_temperature_unit"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+    <RadioGroup
+        android:id="@+id/radioGroup_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButton_celsius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_celsius" />
+
+        <RadioButton
+            android:id="@+id/radioButton_fahrenheit"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_fahrenheit" />
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="@string/settings_wind_speed_unit"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+    <RadioGroup
+        android:id="@+id/radioGroup_windSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton_kmh"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_km_h"/>
+        <RadioButton
+            android:id="@+id/radioButton_ms"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_m_s" />
+    </RadioGroup>
+
+    <!-- Notifications Switch -->
+    <Switch
+        android:id="@+id/switch_notifications"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/settings_notifications"
+        android:textSize="24sp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <!-- Autoupdates Switch -->
+    <Switch
+        android:id="@+id/switch_auto_updates"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/settings_auto_updates"
+        android:textSize="24sp"
+        tools:ignore="UseSwitchCompatOrMaterialXml,TextSizeCheck" />
+
+</LinearLayout>

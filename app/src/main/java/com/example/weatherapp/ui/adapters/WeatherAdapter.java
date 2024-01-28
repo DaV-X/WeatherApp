@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.models.SettingsData;
 import com.example.weatherapp.models.WeatherEntry;
 
 import java.util.List;
@@ -35,10 +36,26 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         WeatherEntry entry = weatherEntries.get(position);
         String formattedDate = dateFormatter.apply(entry.dt_txt);
         holder.tvDateTime.setText(formattedDate);
-        holder.tvTemperature.setText("Temperature: " + entry.main.temp + "°C");
-        holder.tvWindSpeed.setText("Wind Speed: " + entry.wind.speed + " m/s");
+
+        //load settings
+        SettingsData settings = SettingsData.getInstance();
+
+
+        if(settings.temperatureUnit.equals("Celsius")){
+            holder.tvTemperature.setText("Temperature: " + entry.main.temp + "°C");
+            holder.tvFeelTemp.setText("Feels-Like Temperature: " + entry.main.feels_like + "°C");
+        }else{
+            holder.tvTemperature.setText("Temperature: " + settings.celsiusToFahrenheit(entry.main.temp) + "°F");
+            holder.tvFeelTemp.setText("Feels-Like Temperature: " + settings.celsiusToFahrenheit(entry.main.feels_like) + "°F");
+        }
+
+        if(settings.windSpeedUnit.equals("m/s")){
+            holder.tvWindSpeed.setText("Wind Speed: " + entry.wind.speed + " m/s");
+        }else{
+            holder.tvWindSpeed.setText("Wind Speed: " + settings.msToKmh(entry.wind.speed) + " km/h");
+        }
+
         holder.tvPressure.setText("Pressure: " + entry.main.pressure + " hPa");
-        holder.tvFeelTemp.setText("Feels-Like Temperature: " + entry.main.feels_like + "°C");
 
     }
 
