@@ -26,6 +26,10 @@ public interface SavedWeatherDao {
     @Query("SELECT * FROM savedweather WHERE id == :id")
     public SavedWeather getSavedWeatherById(int id);
 
+    @Transaction
     @Query("SELECT * FROM savedweather")
     public List<SavedWeatherWithWeather> getSavedWeatherWithWeather();
+
+    @Query("SELECT * FROM savedweather ORDER BY id DESC LIMIT 1")
+    public SavedWeather getLastAddedSavedWeather();
 }

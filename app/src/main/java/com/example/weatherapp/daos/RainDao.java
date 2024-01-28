@@ -22,6 +22,9 @@ public interface RainDao {
     @Query("SELECT * FROM Rain")
     public List<Rain> getAllRains();
 
+    @Query("SELECT * FROM Rain WHERE savedWeatherId == :savedWeatherID")
+    public Rain getRainBySavedWeatherId(int savedWeatherID);
+
     @Query("SELECT * FROM Rain WHERE id == :id")
     public Rain getRainById(int id);
 }

@@ -22,6 +22,9 @@ public interface WindDao {
     @Query("SELECT * FROM Wind")
     public List<Wind> getAllWinds();
 
+    @Query("SELECT * FROM Wind WHERE savedWeatherId == :savedWeatherID")
+    public Wind getWindBySavedWeatherId(int savedWeatherID);
+
     @Query("SELECT * FROM Wind WHERE id == :id")
     public Wind getWindById(int id);
 }

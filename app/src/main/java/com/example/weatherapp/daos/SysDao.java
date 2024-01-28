@@ -1,6 +1,7 @@
 package com.example.weatherapp.daos;
 
 import androidx.room.*;
+import com.example.weatherapp.models.Coord;
 import com.example.weatherapp.models.Sys;
 
 import java.util.List;
@@ -21,7 +22,8 @@ public interface SysDao {
 
     @Query("SELECT * FROM Sys")
     public List<Sys> getAllSyss();
-
+    @Query("SELECT * FROM Sys WHERE savedWeatherId == :savedWeatherID")
+    public Sys getSysBySavedWeatherId(int savedWeatherID);
     @Query("SELECT * FROM Sys WHERE id == :id")
     public Sys getSysById(int id);
 }

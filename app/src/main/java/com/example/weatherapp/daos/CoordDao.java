@@ -22,6 +22,9 @@ public interface CoordDao {
     @Query("SELECT * FROM Coord")
     public List<Coord> getAllCoords();
 
+    @Query("SELECT * FROM Coord WHERE savedWeatherId == :savedWeatherID")
+    public Coord getCoordBySavedWeatherId(int savedWeatherID);
+
     @Query("SELECT * FROM Coord WHERE id == :id")
     public Coord getCoordById(int id);
 }

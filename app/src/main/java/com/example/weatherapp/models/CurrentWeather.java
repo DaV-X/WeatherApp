@@ -1,25 +1,25 @@
 package com.example.weatherapp.models;
 
-import java.util.List;
-
 import lombok.ToString;
+
+import java.util.List;
 
 @ToString
 public class CurrentWeather {
+    private int id;
     private Coord coord;
     private List<Weather> weather;
-    private String base;
-    private Main main;
-    private int visibility;
     private Wind wind;
+    private Main main;
+    private Sys sys;
     private Rain rain;
     private Clouds clouds;
     private long dt;
-    private Sys sys;
+    private int visibility;
     private int timezone;
-    private int id;
-    private String name;
     private int cod;
+    private String name;
+    private String base;
 
     public CurrentWeather(CurrentWeather model) {
         coord = model.coord;
@@ -38,22 +38,23 @@ public class CurrentWeather {
         cod = model.cod;
     }
 
-    public CurrentWeather(Coord coord, List<Weather> weather, String base, Main main, int visibility, Wind wind, Rain rain, Clouds clouds, long dt, Sys sys, int timezone, int id, String name, int cod) {
+    public CurrentWeather(SavedWeather savedWeather, Clouds clouds, Coord coord, Main main, Rain rain, Sys sys, List<Weather> weather, Wind wind) {
         this.coord = coord;
-        this.weather = weather;
-        this.base = base;
-        this.main = main;
-        this.visibility = visibility;
-        this.wind = wind;
-        this.rain = rain;
         this.clouds = clouds;
-        this.dt = dt;
+        this.main = main;
+        this.rain = rain;
         this.sys = sys;
-        this.timezone = timezone;
-        this.id = id;
-        this.name = name;
-        this.cod = cod;
+        this.weather = weather;
+        this.wind = wind;
+        this.cod = savedWeather.getCod();
+        this.dt = savedWeather.getDt();
+        this.visibility = savedWeather.getVisibility();
+        this.name = savedWeather.getName();
+        this.base = savedWeather.getBase();
+        this.timezone = savedWeather.getTimezone();
+        this.id = savedWeather.getId();
     }
+
 
     public Coord getCoord() {
         return coord;

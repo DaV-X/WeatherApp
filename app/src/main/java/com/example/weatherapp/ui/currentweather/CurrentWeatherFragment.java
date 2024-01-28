@@ -6,15 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
+import com.example.weatherapp.DatabaseInsatnce;
+import com.example.weatherapp.WeatherDatabase;
 import com.example.weatherapp.databinding.FragmentCurrentweatherBinding;
+import com.example.weatherapp.models.CurrentWeather;
+import com.example.weatherapp.models.SavedWeather;
+import com.example.weatherapp.models.SavedWeatherWithWeather;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class CurrentWeatherFragment extends Fragment {
@@ -30,6 +34,14 @@ public class CurrentWeatherFragment extends Fragment {
 
         editTextCityName = binding.editTextCityName;
         buttonSearch = binding.buttonSearch;
+
+        WeatherDatabase database = DatabaseInsatnce.getInstance();
+        SavedWeather lastAddedSavedWeather = database.getSavedWeatherDao().getLastAddedSavedWeather();
+
+        if (lastAddedSavedWeather != null) {
+            CurrentWeather currentWeather = new CurrentWeather(lastAddedSavedWeather, database.getCloudsDao().getCloudsBySavedWeatherId(lastAddedSavedWeather.getId()), database.getCoordDao().getCoordBySavedWeatherId(lastAddedSavedWeather.getId()), database.getMainDao().getMainBySavedWeatherId(lastAddedSavedWeather.getId()), database.getRainDao().getRainBySavedWeatherId(lastAddedSavedWeather.getId()), database.getSysDao().getSysBySavedWeatherId(lastAddedSavedWeather.getId()), database.getWeatherDao().getWeathersBySavedWeatherId(lastAddedSavedWeather.getId()), database.getWindDao().getWindBySavedWeatherId(lastAddedSavedWeather.getId()));
+            viewModel.updateWeatherData(currentWeather);
+        }
 
         buttonSearch.setOnClickListener(v -> {
             String cityName = editTextCityName.getText().toString();

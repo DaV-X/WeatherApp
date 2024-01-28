@@ -1,6 +1,7 @@
 package com.example.weatherapp.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,16 @@ public class SavedWeather {
     private long dt;
     private String name;
     private String base;
+
+    @Ignore
+    public SavedWeather(CurrentWeather current) {
+        visibility = current.getVisibility();
+        timezone = current.getTimezone();
+        cod = current.getCod();
+        dt = current.getDt();
+        name = current.getName();
+        base = current.getBase();
+    }
 
     public int getId() {
         return id;

@@ -9,7 +9,7 @@ import lombok.ToString;
 @Entity(foreignKeys = @ForeignKey(entity = SavedWeather.class, parentColumns = "id", childColumns = "savedWeatherId", onDelete = ForeignKey.CASCADE))
 public class Sys {
     private int type;
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String country;
     private long sunrise;

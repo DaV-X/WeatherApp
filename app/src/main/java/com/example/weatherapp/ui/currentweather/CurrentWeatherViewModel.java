@@ -24,7 +24,13 @@ public class CurrentWeatherViewModel extends ViewModel {
             Log.e("Gather_weather", e.toString());
         }
     }
-
+    public void updateWeatherData(CurrentWeather currentWeather) {
+        try {
+            weatherData.setValue(currentWeather);
+        } catch (Exception e) {
+            Log.e("Gather_weather", e.toString());
+        }
+    }
     public LiveData<CurrentWeather> getWeatherData() {
         return weatherData;
     }

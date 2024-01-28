@@ -8,7 +8,7 @@ import lombok.ToString;
 @ToString
 @Entity(foreignKeys = @ForeignKey(entity = SavedWeather.class, parentColumns = "id", childColumns = "savedWeatherId", onDelete = ForeignKey.CASCADE))
 public class Weather {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String main;
     private String description;

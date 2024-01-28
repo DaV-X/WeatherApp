@@ -22,6 +22,9 @@ public interface CloudsDao {
     @Query("SELECT * FROM Clouds")
     public List<Clouds> getAllCloudss();
 
+    @Query("SELECT * FROM clouds WHERE savedWeatherId == :savedWeatherID")
+    public Clouds getCloudsBySavedWeatherId(int savedWeatherID);
+
     @Query("SELECT * FROM Clouds WHERE id == :id")
     public Clouds getCloudsById(int id);
 }
