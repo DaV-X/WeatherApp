@@ -35,7 +35,7 @@ public class LongTermForecastFragment extends Fragment {
 
         viewModel.getForecastData().observe(getViewLifecycleOwner(), forecastData -> {
             if (forecastData != null) {
-                WeatherAdapter adapter = new WeatherAdapter(forecastData.list, this::formatDateTime);
+                WeatherAdapter adapter = new WeatherAdapter(forecastData.getList(), this::formatDateTime);
                 recyclerView.setAdapter(adapter);
             }
         });
