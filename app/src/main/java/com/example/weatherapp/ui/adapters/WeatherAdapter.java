@@ -34,7 +34,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
         WeatherEntry entry = weatherEntries.get(position);
-        String formattedDate = dateFormatter.apply(entry.dt_txt);
+        String formattedDate = dateFormatter.apply(entry.getDt_txt());
         holder.tvDateTime.setText(formattedDate);
 
         //load settings
@@ -42,20 +42,20 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
 
         if(settings.temperatureUnit.equals("Celsius")){
-            holder.tvTemperature.setText("Temperature: " + entry.main.temp + "°C");
-            holder.tvFeelTemp.setText("Feels-Like Temperature: " + entry.main.feels_like + "°C");
+            holder.tvTemperature.setText("Temperature: " + entry.getMain().getTemp() + "°C");
+            holder.tvFeelTemp.setText("Feels-Like Temperature: " + entry.getMain().getFeels_like() + "°C");
         }else{
-            holder.tvTemperature.setText("Temperature: " + settings.celsiusToFahrenheit(entry.main.temp) + "°F");
-            holder.tvFeelTemp.setText("Feels-Like Temperature: " + settings.celsiusToFahrenheit(entry.main.feels_like) + "°F");
+            holder.tvTemperature.setText("Temperature: " + settings.celsiusToFahrenheit(entry.getMain().getTemp()) + "°F");
+            holder.tvFeelTemp.setText("Feels-Like Temperature: " + settings.celsiusToFahrenheit(entry.getMain().getFeels_like()) + "°F");
         }
 
         if(settings.windSpeedUnit.equals("m/s")){
-            holder.tvWindSpeed.setText("Wind Speed: " + entry.wind.speed + " m/s");
+            holder.tvWindSpeed.setText("Wind Speed: " + entry.getWind().getSpeed() + " m/s");
         }else{
-            holder.tvWindSpeed.setText("Wind Speed: " + settings.msToKmh(entry.wind.speed) + " km/h");
+            holder.tvWindSpeed.setText("Wind Speed: " + settings.msToKmh(entry.getWind().getSpeed()) + " km/h");
         }
 
-        holder.tvPressure.setText("Pressure: " + entry.main.pressure + " hPa");
+        holder.tvPressure.setText("Pressure: " + entry.getMain().getPressure() + " hPa");
 
     }
 

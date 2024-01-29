@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui.currentweather;
 
+import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,11 +16,21 @@ public class CurrentWeatherViewModel extends ViewModel {
         weatherData = new MutableLiveData<>();
     }
 
-    public void updateWeatherData(String cityName) {
-        CurrentWeather temp = weatherApiService.getWeatherByCityName(cityName, "metric");
-        weatherData.setValue(temp);
-    }
 
+    public void updateWeatherData(String cityName) {
+        try {
+            weatherData.setValue(weatherApiService.getWeatherByCityName(cityName, "metric"));
+        } catch (Exception e) {
+            Log.e("Gather_weather", e.toString());
+        }
+    }
+    public void updateWeatherData(CurrentWeather currentWeather) {
+        try {
+            weatherData.setValue(currentWeather);
+        } catch (Exception e) {
+            Log.e("Gather_weather", e.toString());
+        }
+    }
     public LiveData<CurrentWeather> getWeatherData() {
         return weatherData;
     }

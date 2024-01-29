@@ -1,8 +1,57 @@
 package com.example.weatherapp.models;
 
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+import lombok.ToString;
+
+@ToString
+@Entity(foreignKeys = @ForeignKey(entity = SavedWeather.class, parentColumns = "id", childColumns = "savedWeatherId", onDelete = ForeignKey.CASCADE))
 public class Weather {
-    public int id;
-    public String main;
-    public String description;
-    public String icon;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String main;
+    private String description;
+    private String icon;
+    private int savedWeatherId;
+
+    public int getSavedWeatherId() {
+        return savedWeatherId;
+    }
+
+    public void setSavedWeatherId(int savedWeatherId) {
+        this.savedWeatherId = savedWeatherId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMain() {
+        return main;
+    }
+
+    public void setMain(String main) {
+        this.main = main;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }
