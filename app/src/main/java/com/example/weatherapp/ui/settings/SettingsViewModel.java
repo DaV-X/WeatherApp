@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.example.weatherapp.models.SettingsData;
+
 
 public class SettingsViewModel extends AndroidViewModel {
     private final SharedPreferences sharedPreferences;
@@ -28,5 +30,15 @@ public class SettingsViewModel extends AndroidViewModel {
 
     public String getStringSetting(String key, String defaultValue) {
         return sharedPreferences.getString(key, defaultValue);
+    }
+
+    public void loadSettings(){
+        SettingsData settings = SettingsData.getInstance();
+        settings.useCurrentLocation = sharedPreferences.getBoolean("useCurrentLocation", true);
+        settings.cityName = sharedPreferences.getString("cityName", "");
+        settings.temperatureUnit = sharedPreferences.getString("temperatureUnit", "Celsius");
+        settings.windSpeedUnit = sharedPreferences.getString("windSpeedUnit", "km/h");
+        settings.notificationsEnabled = sharedPreferences.getBoolean("notifications", false);
+        settings.autoUpdatesEnabled = sharedPreferences.getBoolean("autoUpdates", false);
     }
 }

@@ -6,29 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.example.weatherapp.databinding.FragmentCurrentweatherBinding;
-import com.example.weatherapp.models.SettingsData;
-import com.example.weatherapp.ui.settings.SettingsViewModel;
-
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.weatherapp.DatabaseInsatnce;
 import com.example.weatherapp.WeatherDatabase;
 import com.example.weatherapp.databinding.FragmentCurrentweatherBinding;
 import com.example.weatherapp.models.CurrentWeather;
 import com.example.weatherapp.models.SavedWeather;
-import com.example.weatherapp.models.SavedWeatherWithWeather;
+import com.example.weatherapp.models.SettingsData;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class CurrentWeatherFragment extends Fragment {
     private FragmentCurrentweatherBinding binding;
     private EditText editTextCityName;
-    private Button buttonSearch;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,12 +33,8 @@ public class CurrentWeatherFragment extends Fragment {
         View root = binding.getRoot();
 
         editTextCityName = binding.editTextCityName;
-        buttonSearch = binding.buttonSearch;
+        Button buttonSearch = binding.buttonSearch;
 
-        //load saved settings
-        SettingsData settings = SettingsData.getInstance();
-        if(!settings.useCurrentLocation)
-            editTextCityName.setText(settings.cityName);
 
         WeatherDatabase database = DatabaseInsatnce.getInstance();
         SavedWeather lastAddedSavedWeather = database.getSavedWeatherDao().getLastAddedSavedWeather();
@@ -51,6 +43,11 @@ public class CurrentWeatherFragment extends Fragment {
             CurrentWeather currentWeather = new CurrentWeather(lastAddedSavedWeather, database.getCloudsDao().getCloudsBySavedWeatherId(lastAddedSavedWeather.getId()), database.getCoordDao().getCoordBySavedWeatherId(lastAddedSavedWeather.getId()), database.getMainDao().getMainBySavedWeatherId(lastAddedSavedWeather.getId()), database.getRainDao().getRainBySavedWeatherId(lastAddedSavedWeather.getId()), database.getSysDao().getSysBySavedWeatherId(lastAddedSavedWeather.getId()), database.getWeatherDao().getWeathersBySavedWeatherId(lastAddedSavedWeather.getId()), database.getWindDao().getWindBySavedWeatherId(lastAddedSavedWeather.getId()));
             viewModel.updateWeatherData(currentWeather);
         }
+
+        //load saved settings
+        SettingsData settings = SettingsData.getInstance();
+        if(!settings.useCurrentLocation)
+            editTextCityName.setText(settings.cityName);
 
         buttonSearch.setOnClickListener(v -> {
             String cityName = editTextCityName.getText().toString();
