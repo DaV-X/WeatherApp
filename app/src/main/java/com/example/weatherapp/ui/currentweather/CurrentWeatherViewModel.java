@@ -23,4 +23,5 @@ public class CurrentWeatherViewModel extends ViewModel {
     public LiveData<CurrentWeather> getWeatherData() {
         return weatherData;
     }
+
 }
